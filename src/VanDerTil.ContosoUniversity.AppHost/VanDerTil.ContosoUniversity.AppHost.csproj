@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VanDerTil.ContosoUniversity.Migrations\VanDerTil.ContosoUniversity.Migrations.csproj" />
+    <ProjectReference Include="..\VanDerTil.ContosoUniversity.Web\VanDerTil.ContosoUniversity.Web.csproj" />
   </ItemGroup>
 
 </Project>

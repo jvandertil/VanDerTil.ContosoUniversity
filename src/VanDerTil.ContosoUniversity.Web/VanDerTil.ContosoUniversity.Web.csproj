@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <UserSecretsId>3314aefa-d55a-4a34-86fa-b1386214495f</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EnableSdkContainerDebugging>True</EnableSdkContainerDebugging>
+    <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:10.0</ContainerBaseImage>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ContainerPort Include="8081" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\VanDerTil.ContosoUniversity.ServiceDefaults\VanDerTil.ContosoUniversity.ServiceDefaults.csproj" />
+    
+    <PackageReference Include="Aspire.Npgsql" Version="13.4.6" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+
+    <PackageReference Include="AspNetCore.SassCompiler" Version="1.101.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\lib\**" />
+    <None Include="wwwroot\lib\**">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+    <None Include="wwwroot\scss\**">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </None>
+    <Content Remove="wwwroot\scss\styles.scss" />
+
+    <None Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <Content Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <Content Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+  </ItemGroup>
+
+</Project>

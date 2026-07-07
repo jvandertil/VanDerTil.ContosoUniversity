@@ -1,0 +1,15 @@
+{
+  "Source": "wwwroot/scss",
+  "Target": "wwwroot/css",
+  "Arguments": "--style=compressed",
+  "ScopedCssFolders": [ "Pages", "Areas", "Features" ],
+
+  "Configurations": {
+    "Debug": {
+      "Arguments": "--style=expanded"
+    },
+    "Release": {
+      "Arguments": "--quiet"
+    }
+  }
+}

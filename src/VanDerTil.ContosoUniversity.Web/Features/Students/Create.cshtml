@@ -1,0 +1,13 @@
+﻿@model VanDerTil.ContosoUniversity.Web.Features.Students.CreateStudentController.CreateStudentCommand
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+<form method="post">
+    <validation-summary />
+
+    <form-field for="FirstMidName" label="@Localizer["Field.FirstMidName"]" required />
+    <form-field for="LastName" label="@Localizer["Field.LastName"]" required />
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<script src="~/js/Shared/ajax-form.js"></script>

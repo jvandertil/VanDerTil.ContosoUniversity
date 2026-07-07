@@ -1,0 +1,5 @@
+wwwroot/lib
+*.css
+*.css.map
+*.js
+*.js.map

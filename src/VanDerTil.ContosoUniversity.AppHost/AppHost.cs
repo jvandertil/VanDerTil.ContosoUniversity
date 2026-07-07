@@ -18,4 +18,7 @@ var migrations = builder.AddProject<Projects.VanDerTil_ContosoUniversity_Migrati
     .WithEnvironment("Seeding__Enabled", "true")
     .WithParentRelationship(database);
 
+builder.AddProject<Projects.VanDerTil_ContosoUniversity_Web>("web")
+    .WaitForCompletion(migrations);
+
 builder.Build().Run();
