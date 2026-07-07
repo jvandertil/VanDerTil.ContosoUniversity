@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VanDerTil.ContosoUniversity.Diagnostics\VanDerTil.ContosoUniversity.Diagnostics.csproj" />
     <ProjectReference Include="..\VanDerTil.ContosoUniversity.ServiceDefaults\VanDerTil.ContosoUniversity.ServiceDefaults.csproj" />
     
     <PackageReference Include="Aspire.Npgsql" Version="13.4.6" />

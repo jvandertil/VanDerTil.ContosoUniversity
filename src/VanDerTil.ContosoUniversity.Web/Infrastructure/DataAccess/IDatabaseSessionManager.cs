@@ -15,7 +15,7 @@ public interface IDatabaseSessionManager
     /// <summary>
     /// Gets the current database session associated with the context, if any.
     /// </summary>
-    DatabaseSession? CurrentSession { get; }
+    IDatabaseSession? CurrentSession { get; }
 
     /// <summary>
     /// Begins a new session with the specified transaction isolation level.

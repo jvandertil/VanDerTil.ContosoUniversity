@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using VanDerTil.ContosoUniversity.Diagnostics;
 
 namespace VanDerTil.ContosoUniversity.Web.Infrastructure.Filters;
 
@@ -14,11 +15,16 @@ public sealed class FluentValidationActionFilter : IAsyncActionFilter
 
     public FluentValidationActionFilter(IServiceProvider serviceProvider)
     {
+        Guard.NotNull(serviceProvider);
+
         _serviceProvider = serviceProvider;
     }
 
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
+        Guard.NotNull(context);
+        Guard.NotNull(next);
+
         var arguments = context.ActionArguments;
 
         object? lastModel = null;
@@ -64,6 +70,9 @@ public sealed class FluentValidationActionFilter : IAsyncActionFilter
     /// <param name="modelState">The ModelStateDictionary to store the errors in.</param>
     private static void AddToModelState(ValidationResult result, ModelStateDictionary modelState)
     {
+        Ensure.That(result is not null);
+        Ensure.That(modelState is not null);
+
         if (!result.IsValid)
         {
             foreach (var error in result.Errors)

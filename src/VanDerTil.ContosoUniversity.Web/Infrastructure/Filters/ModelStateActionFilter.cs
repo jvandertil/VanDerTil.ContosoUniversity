@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using VanDerTil.ContosoUniversity.Diagnostics;
 
 namespace VanDerTil.ContosoUniversity.Web.Infrastructure.Filters;
 
@@ -11,6 +12,8 @@ public sealed class ModelStateActionFilter : IActionFilter
 
     public void OnActionExecuting(ActionExecutingContext context)
     {
+        Guard.NotNull(context);
+
         if (!context.ModelState.IsValid)
         {
             context.Result = ValidationProblemResponse.From(context.ModelState);

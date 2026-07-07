@@ -231,6 +231,9 @@
           "Polly.Core": "8.4.2"
         }
       },
+      "vandertil.contosouniversity.diagnostics": {
+        "type": "Project"
+      },
       "vandertil.contosouniversity.servicedefaults": {
         "type": "Project",
         "dependencies": {

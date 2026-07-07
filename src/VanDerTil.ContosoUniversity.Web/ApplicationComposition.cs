@@ -1,9 +1,9 @@
-using System.Diagnostics;
 using System.Linq;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VanDerTil.ContosoUniversity.Diagnostics;
 using VanDerTil.ContosoUniversity.Web.Infrastructure;
 using VanDerTil.ContosoUniversity.Web.Infrastructure.DataAccess;
 using VanDerTil.ContosoUniversity.Web.Infrastructure.Filters;
@@ -17,6 +17,8 @@ public static class ApplicationComposition
     public static void ConfigureServices<TBuilder>(TBuilder builder)
         where TBuilder : IHostApplicationBuilder
     {
+        Guard.NotNull(builder);
+
         builder.AddServiceDefaults();
         builder.AddNpgsqlDataSource("contosodb");
 
@@ -55,18 +57,21 @@ public static class ApplicationComposition
         builder.Services.AddAuthorization();
 
         builder.Services.AddScoped<IDatabaseSessionManager, DbDataSourceDatabaseSessionManager>();
-        builder.Services.AddScoped(container =>
+        builder.Services.AddScoped<IDatabaseSession>(container =>
         {
             IDatabaseSessionManager database = container.GetRequiredService<IDatabaseSessionManager>();
 
-            Debug.Assert(database.CurrentSession is not null, $"{nameof(IDatabaseSessionManager.CurrentSession)} was unexpectedly null");
+            Ensure.That(database.CurrentSession is not null);
 
             return database.CurrentSession;
         });
+        builder.Services.AddScoped<IQueryExecutor, DefaultQueryExecutor>();
     }
 
     public static void ConfigurePipeline(WebApplication app)
     {
+        Guard.NotNull(app);
+
         app.UseForwardedHeaders();
         app.UseHttpsRedirection();
 

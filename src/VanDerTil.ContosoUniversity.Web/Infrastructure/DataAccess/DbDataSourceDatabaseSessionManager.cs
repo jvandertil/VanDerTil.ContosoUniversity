@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
+using VanDerTil.ContosoUniversity.Diagnostics;
 
 namespace VanDerTil.ContosoUniversity.Web.Infrastructure.DataAccess;
 
@@ -8,10 +9,12 @@ public sealed class DbDataSourceDatabaseSessionManager : IDatabaseSessionManager
 {
     private readonly DbDataSource _dataSource;
 
-    public DatabaseSession? CurrentSession { get; private set; }
+    public IDatabaseSession? CurrentSession { get; private set; }
 
     public DbDataSourceDatabaseSessionManager(DbDataSource dataSource)
     {
+        Guard.NotNull(dataSource);
+
         _dataSource = dataSource;
     }
 

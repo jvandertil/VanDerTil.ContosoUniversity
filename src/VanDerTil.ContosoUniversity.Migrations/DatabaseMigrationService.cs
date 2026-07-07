@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 using Polly;
+using VanDerTil.ContosoUniversity.Diagnostics;
 
 namespace VanDerTil.ContosoUniversity.Migrations;
 
@@ -18,11 +19,15 @@ public sealed class DatabaseMigrationService
     private readonly SeedingConfiguration _seedingConfiguration;
     private readonly ResiliencePipeline _retryPipeline;
 
-    public DatabaseMigrationService(NpgsqlDataSource dataSource, ILogger<DatabaseMigrationService> logger, SeedingConfiguration seedingConfiguration)
+    public DatabaseMigrationService(NpgsqlDataSource dataSource, SeedingConfiguration seedingConfiguration, ILogger<DatabaseMigrationService> logger)
     {
+        Guard.NotNull(dataSource);
+        Guard.NotNull(seedingConfiguration);
+        Guard.NotNull(logger);
+
         _dataSource = dataSource;
-        _logger = logger;
         _seedingConfiguration = seedingConfiguration;
+        _logger = logger;
 
         _retryPipeline = new ResiliencePipelineBuilder()
             .AddRetry(new Polly.Retry.RetryStrategyOptions
