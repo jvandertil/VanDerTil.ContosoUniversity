@@ -1,0 +1,22 @@
+<Project Sdk="Aspire.AppHost.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <UserSecretsId>8d8eb28c-d65d-495a-9a39-b945585590e7</UserSecretsId>
+
+    <!-- Aspire SDK uses platform specific packages in a weird way, and messes up the lock file -->
+    <!-- This issue occurs when the lock file is committed on a different OS than what is used on the CI server. -->
+    <!-- See: https://github.com/dotnet/aspire/issues/6184 -->
+    <RestorePackagesWithLockFile>false</RestorePackagesWithLockFile>
+    <RestoreLockedMode>false</RestoreLockedMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.4.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VanDerTil.ContosoUniversity.Migrations\VanDerTil.ContosoUniversity.Migrations.csproj" />
+  </ItemGroup>
+
+</Project>

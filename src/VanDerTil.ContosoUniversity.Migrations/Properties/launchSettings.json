@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "VanDerTil.ContosoUniversity.Migrations": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
