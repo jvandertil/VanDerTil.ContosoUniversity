@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\VanDerTil.ContosoUniversity.ServiceDefaults\VanDerTil.ContosoUniversity.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\VanDerTil.ContosoUniversity.ServiceDefaults\VanDerTil.ContosoUniversity.ServiceDefaults.csproj" />
     <ProjectReference Include="..\VanDerTil.ContosoUniversity.Diagnostics\VanDerTil.ContosoUniversity.Diagnostics.csproj" />
     
     <PackageReference Include="dbup-postgresql" Version="7.0.1" />

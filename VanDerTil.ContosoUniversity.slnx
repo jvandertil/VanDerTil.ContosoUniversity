@@ -9,7 +9,7 @@
     <Project Path="src/VanDerTil.ContosoUniversity.Diagnostics/VanDerTil.ContosoUniversity.Diagnostics.csproj" Id="5ce6b3e2-ee59-4c1d-b4b8-34c266583286" />
     <Project Path="src/VanDerTil.ContosoUniversity.Migrations/VanDerTil.ContosoUniversity.Migrations.csproj" Id="43762d41-3392-4bf3-9ef2-a5b318226cfc" />
     <Project Path="src/VanDerTil.ContosoUniversity.Web/VanDerTil.ContosoUniversity.Web.csproj" />
-    <Project Path="VanDerTil.ContosoUniversity.ServiceDefaults/VanDerTil.ContosoUniversity.ServiceDefaults.csproj" Id="d5b7bc07-6fb6-4310-998b-4b13346e7228" />
+    <Project Path="src/VanDerTil.ContosoUniversity.ServiceDefaults/VanDerTil.ContosoUniversity.ServiceDefaults.csproj" Id="d5b7bc07-6fb6-4310-998b-4b13346e7228" />
   </Folder>
   <Folder Name="/tests/" />
 </Solution>
