@@ -1,6 +1,7 @@
-﻿using FluentValidation;
+﻿using System.ComponentModel.DataAnnotations;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 using VanDerTil.ContosoUniversity.Web.Infrastructure.Filters;
 using VanDerTil.ContosoUniversity.Web.Infrastructure.Requests;
 
@@ -29,23 +30,24 @@ public class CreateStudentController : Controller
 
         public string? LastName { get; init; }
 
+        [DataType(DataType.Date)]
         public DateTime? EnrollmentDate { get; init; }
     }
 
     public sealed class CreateStudentCommandValidator : AbstractValidator<CreateStudentCommand>
     {
-        public CreateStudentCommandValidator()
+        public CreateStudentCommandValidator(IStringLocalizer<Create> createLocalizer, IStringLocalizer<SharedResources> sharedLocalizer)
         {
             RuleFor(x => x.FirstMidName)
-                .NotEmpty().WithMessage("First name is required.")
+                .NotEmpty().WithMessage(sharedLocalizer["FieldValidation.IsRequired", createLocalizer["Field.FirstMidName"]])
                 .MaximumLength(50).WithMessage("First name cannot exceed 50 characters.");
 
             RuleFor(x => x.LastName)
-                .NotEmpty().WithMessage("Last name is required.")
+                .NotEmpty().WithMessage(sharedLocalizer["FieldValidation.IsRequired", createLocalizer["Field.LastName"]])
                 .MaximumLength(50).WithMessage("Last name cannot exceed 50 characters.");
 
             RuleFor(x => x.EnrollmentDate)
-                .NotNull().WithMessage("Enrollment date is required.")
+                .NotNull().WithMessage(sharedLocalizer["FieldValidation.IsRequired", createLocalizer["Field.EnrollmentDate"]])
                 .LessThanOrEqualTo(DateTime.Today).WithMessage("Enrollment date cannot be in the future.");
         }
     }

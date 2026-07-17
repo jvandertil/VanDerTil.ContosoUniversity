@@ -1,5 +1,23 @@
 $fonts: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
+@use "sass:map";
+
 @use "../lib/bootstrap/scss/bootstrap" as bs with (
 //$primary: #f03d4d,
 $font-family-sans-serif: $fonts, $body-color: #0f172a, );
+
+.form-field {
+    margin-bottom: map.get(bs.$spacers, 3);
+
+    &__label {
+        @extend .form-label;
+    }
+
+    &__input {
+        @extend .form-control;
+    }
+
+    &__error {
+        @extend .invalid-feedback;
+    }
+}

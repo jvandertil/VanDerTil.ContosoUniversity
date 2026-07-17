@@ -1,6 +1,7 @@
 using System.Linq;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using VanDerTil.ContosoUniversity.Diagnostics;
@@ -21,6 +22,11 @@ public static class ApplicationComposition
 
         builder.AddServiceDefaults();
         builder.AddNpgsqlDataSource("contosodb");
+
+        builder.Services.AddLocalization(opts => opts.ResourcesPath = "Resources");
+        builder.Services.AddRouting(opts => opts.LowercaseUrls = true);
+        builder.Services.AddAuthentication();
+        builder.Services.AddAuthorization();
 
         builder.Services.AddScoped<IRequestDispatcher, ReflectionRequestDispatcher>();
 
@@ -51,11 +57,6 @@ public static class ApplicationComposition
 
         builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 
-        builder.Services.AddLocalization();
-        builder.Services.AddRouting(opts => opts.LowercaseUrls = true);
-        builder.Services.AddAuthentication();
-        builder.Services.AddAuthorization();
-
         builder.Services.AddScoped<IDatabaseSessionManager, DbDataSourceDatabaseSessionManager>();
         builder.Services.AddScoped<IDatabaseSession>(container =>
         {
@@ -78,6 +79,13 @@ public static class ApplicationComposition
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.UseRequestLocalization(options =>
+        {
+            options.DefaultRequestCulture = new RequestCulture("nl-NL");
+            options.SupportedCultures = [new("nl-NL"), new("nl")];
+            options.SupportedUICultures = [new("nl-NL"), new("nl")];
+        });
 
         app.MapDefaultEndpoints();
 

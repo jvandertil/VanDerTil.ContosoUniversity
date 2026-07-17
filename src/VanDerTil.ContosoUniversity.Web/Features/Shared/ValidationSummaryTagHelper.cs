@@ -11,6 +11,5 @@ public class ValidationSummaryTagHelper : TagHelper
         output.TagName = "div";
         output.Attributes.SetAttribute("class", "validation-summary");
         output.Attributes.SetAttribute("data-validation-summary", null);
-        output.Content.SetHtmlContent("<ul></ul>");
     }
 }

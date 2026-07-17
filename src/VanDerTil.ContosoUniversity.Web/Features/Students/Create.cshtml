@@ -6,8 +6,11 @@
 
     <form-field for="FirstMidName" label="@Localizer["Field.FirstMidName"]" required />
     <form-field for="LastName" label="@Localizer["Field.LastName"]" required />
+    <form-field for="EnrollmentDate" label="@Localizer["Field.EnrollmentDate"]" required />
 
     <button class="btn btn-primary" type="submit">Submit</button>
 </form>
 
-<script src="~/js/Shared/ajax-form.js"></script>
+@section Scripts {
+    <script src="~/js/Shared/ajax-form.js"></script>
+}
