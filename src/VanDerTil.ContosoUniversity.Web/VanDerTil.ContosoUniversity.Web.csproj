@@ -10,6 +10,10 @@
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <TypeScriptTarget>ES2015</TypeScriptTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <ContainerPort Include="8081" />
   </ItemGroup>

@@ -42,7 +42,9 @@ function clearFieldErrors(form: HTMLFormElement): void {
 }
 
 function highlightFieldErrors(form: HTMLFormElement, errors: Record<string, string[]>): void {
-    for (const [fieldName, messages] of Object.entries(errors)) {
+    const entries = Object.keys(errors).map(key => [key, errors[key]] as const);
+
+    for (const [fieldName, messages] of entries) {
         const fieldElement = form.querySelector<HTMLElement>(fieldSelectorFor(fieldName));
         const errorElement = form.querySelector<HTMLElement>(fieldErrorSelectorFor(fieldName));
 
@@ -63,9 +65,12 @@ function renderSummary(form: HTMLFormElement, errors: Record<string, string[]>):
     if (!summary) return;
 
     // Only include errors that don't map to a field (empty string key or unmapped fields)
-    const unmappedErrors = Object.entries(errors)
+    const entries = Object.keys(errors).map(key => [key, errors[key]] as const);
+
+    const unmappedErrors = entries
         .filter(([fieldName]) => !fieldName || !form.querySelector(fieldErrorSelectorFor(fieldName)))
-        .flatMap(([, messages]) => messages);
+        .map(([, messages]) => messages)
+        .reduce((acc, messages) => acc.concat(messages), [] as string[]);
 
     summary.innerHTML = "";
     summary.hidden = unmappedErrors.length === 0;
