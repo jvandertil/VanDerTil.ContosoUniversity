@@ -22,7 +22,7 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
 
     <PackageReference Include="AspNetCore.SassCompiler" Version="1.101.0" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="6.0.3">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
